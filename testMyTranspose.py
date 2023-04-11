@@ -6,7 +6,29 @@ import pandas as pd
 from myTranspose import myTranspose
 
 
-class myTestCase(unittest.TestCase) :
+class myTestCase(unittest.TestCase) :    
+    def testTranspose1(self) :
+        # Generate Array
+        myVar1 = np.arange(1,11).reshape(2,5).transpose()
+        
+        # Run Inference
+        myVar1Pred = myTranspose(myVar1)
+        myVar1Target = myVar1.transpose()
+        
+        # Unit Test
+        self.assertTrue(np.testing.assert_equal(myVar1Pred, myVar1Target) is None)
+        
+     def testTranspose2(self) :
+        # Generate Array
+        myVar1 = np.ones(shape=(0,0))*np.nan
+        
+        # Run Inference
+        myVar1Pred = myTranspose(myVar1)
+        myVar1Target = np.empty(shape=(0,0))
+        
+        # Unit Test
+        self.assertTrue(np.testing.assert_equal(myVar1Pred, myVar1Target) is None)
+        
     def testTranspose3(self) :
         # Generate Array
         myVar1 = np.array([1,2]).reshape(1,2)
@@ -73,7 +95,7 @@ class myTestCase(unittest.TestCase) :
         
         # Unit Test
         self.assertTrue(np.testing.assert_equal(myData3Pred, myData3Target) is None)
-        
-        
+
+
 if __name__ == "__main__" :
     unittest.main()
